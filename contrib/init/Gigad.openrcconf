@@ -1,0 +1,26 @@
+# /etc/conf.d/Gigad: config file for /etc/init.d/Gigad
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/Giga/Giga.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/Gigad"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/Gigad.pid"
+
+# Where to write Gigad data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/Gigad"
+
+# User and group to own Gigad process
+#BITCOIND_USER="Giga"
+#BITCOIND_GROUP="Giga"
+
+# Path to Gigad executable
+#BITCOIND_BIN="/usr/bin/Gigad"
+
+# Nice value to run Gigad under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+BITCOIND_OPTS=""

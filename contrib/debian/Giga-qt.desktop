@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Giga
+Comment=Giga P2P Cryptocurrency
+Comment[fr]=Giga, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Giga, eşten eşe kriptografik sanal para birimi
+Exec=Giga-qt %u
+Terminal=false
+Type=Application
+Icon=Giga128
+MimeType=x-scheme-handler/Giga;
+Categories=Office;Finance;

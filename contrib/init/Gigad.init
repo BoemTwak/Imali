@@ -1,0 +1,67 @@
+#!/bin/bash
+#
+#  Gigad The Giga core server.
+#
+#
+# chkconfig: 345 80 20
+# description: Gigad
+# processname: Gigad
+#
+
+# Source function library.
+. /etc/init.d/functions
+
+# you can override defaults in /etc/sysconfig/Gigad, see below
+if [ -f /etc/sysconfig/Gigad ]; then
+        . /etc/sysconfig/Gigad
+fi
+
+RETVAL=0
+
+prog=Gigad
+# you can override the lockfile via BITCOIND_LOCKFILE in /etc/sysconfig/Gigad
+lockfile=${BITCOIND_LOCKFILE-/var/lock/subsys/Gigad}
+
+# Gigad defaults to /usr/bin/Gigad, override with BITCOIND_BIN
+bitcoind=${BITCOIND_BIN-/usr/bin/Gigad}
+
+# Gigad opts default to -disablewallet, override with BITCOIND_OPTS
+bitcoind_opts=${BITCOIND_OPTS}
+
+start() {
+    echo -n $"Starting $prog: "
+    daemon $DAEMONOPTS $bitcoind $bitcoind_opts
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch $lockfile
+    return $RETVAL
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $lockfile
+    return $RETVAL
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status $prog
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo "Usage: service $prog {start|stop|status|restart}"
+        exit 1
+        ;;
+esac
